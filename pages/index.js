@@ -98,6 +98,10 @@ const Content = styled.div`
             margin-top: 0;
           }
 
+          ul {
+            padding-left: 20px;
+          }
+
           small {
             font-size: 13px;
             opacity: 0.5;
@@ -185,7 +189,6 @@ const Main = () => {
   const [logs, setLogs] = useState()
   const [selected, setSelected] = useState()
   const [selectedGuild, setSelectedGuild] = useState()
-  console.log(logs)
 
   const readFile = async ({ target }) => {
     const txt = await target?.files[0].text()
@@ -297,7 +300,10 @@ const Main = () => {
                               <small>LIFE {i + 1}</small>
                               <ul className="code">
                                 {l.map((k) => (
-                                  <li key={`${k.ign}-${i}`}>{k.ign}</li>
+                                  <li key={`${k.ign}-${i}`}>
+                                    {k.ign}
+                                    <small className="right">{k.guild}</small>
+                                  </li>
                                 ))}
                               </ul>
                             </li>
@@ -311,7 +317,10 @@ const Main = () => {
                             <li key={`${d.ign}`}>
                               <small>LIFE {i + 1}</small>
                               <ul className="code">
-                                <li key={`${d.ign}-${i + 1}`}>{d.ign}</li>
+                                <li key={`${d.ign}-${i + 1}`}>
+                                  {d.ign}
+                                  <small className="right">{d.guild}</small>
+                                </li>
                               </ul>
                             </li>
                           ))}
@@ -341,7 +350,7 @@ const Main = () => {
               fileRef?.current?.click()
             }}
           >
-            <p>CLICK TO UPLOAD LOGS</p>
+            <p>BROWSE PC FOR LOGS</p>
           </Drop>
         </Upload>
       )}
