@@ -71,7 +71,7 @@ export const parseLogs = (logs) => {
     })
     .sort((a, b) => b.points - a.points)
 
-  const guilds = players.reduce((v, p) => {
+  const guildObj = players.reduce((v, p) => {
     if (!v[p.guild]) {
       v[p.guild] = {
         name: p.guild,
@@ -80,6 +80,7 @@ export const parseLogs = (logs) => {
         players: [],
       }
     }
+    v[p.guild].name = p.guild
     v[p.guild].points += p.points
     v[p.guild].kills += p.kills.reduce((v, k) => {
       return [...v, ...k]
@@ -90,10 +91,13 @@ export const parseLogs = (logs) => {
     })
     v[p.guild].players.sort((a, b) => b.points - a.points)
 
-    v[p.guild].points += p.points
-
     return v
   }, {})
+  const guilds = Object.keys(guildObj)
+    .map((k) => {
+      return guildObj[k]
+    })
+    .sort((a, b) => b.points - a.points)
 
   return { guilds, players }
 }

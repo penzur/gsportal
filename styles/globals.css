@@ -1,11 +1,17 @@
+@import url('http://fonts.cdnfonts.com/css/d-din');
+@import url('http://fonts.cdnfonts.com/css/inconsolata-2');
 html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'D-DIN', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #efefef;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.75);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -51,6 +57,10 @@ a {
 #container > footer {
   background-color: #efefef;
   margin-bottom: 0;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  opacity: 0.75;
 }
 #container > footer::before {
   content: ' ';
@@ -60,4 +70,33 @@ a {
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
+}
+
+.condensed {
+  font-family: 'D-DIN Condensed';
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
+
+.code {
+  padding: 0.75rem;
+  font-size: 16px;
+  opacity: 0.95;
+  font-family: 'Inconsolata', Menlo, Monaco, Lucida Console, Liberation Mono,
+    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
 }
