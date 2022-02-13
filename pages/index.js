@@ -247,11 +247,13 @@ const Main = () => {
                 >
                   <strong className="txt">
                     {i === 0 ? (
-                      <Image src={crown} alt="crown" key="icn" />
+                      <span>
+                        <Image src={crown} alt="crown" key="icn" />
+                        &nbsp;&nbsp;
+                      </span>
                     ) : (
                       <span className="idx">{i + 1}</span>
                     )}
-                    &nbsp;&nbsp;
                     {g.name}
                   </strong>
                   <span className="numbers">{g.players.length}</span>
@@ -285,11 +287,13 @@ const Main = () => {
                   >
                     <strong className="txt">
                       {l.name === logs.players[0].name ? (
-                        <Image src={mvp} alt="mvp" />
+                        <span>
+                          <Image src={mvp} alt="mvp" />
+                          &nbsp;&nbsp;
+                        </span>
                       ) : (
                         <span className="idx">{i + 1}</span>
                       )}
-                      &nbsp;&nbsp;
                       {l.name.trim() || '-'}
                     </strong>
                     <span className="numbers">{l.guild}</span>
