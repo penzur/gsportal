@@ -94,7 +94,7 @@ const Content = styled.div`
           }
 
           ul {
-            padding-left: 20px;
+            padding-left: 16px;
           }
 
           small {
