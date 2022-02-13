@@ -25,6 +25,9 @@ a.blue {
   border-bottom: 1px solid blue;
   padding-bottom: 4px;
 }
+a.logo {
+  font-size: 32px;
+}
 
 * {
   box-sizing: border-box;
@@ -110,4 +113,7 @@ a.blue {
 
 .right {
   float: right;
+}
+.silence {
+  opacity: 0.75;
 }

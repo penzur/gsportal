@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header>
       <Link href="/">
-        <a style={{ fontSize: 32, fontWeight: 'bold' }}>GSParser</a>
+        <a className="logo">GSParser</a>
       </Link>
     </header>
   )

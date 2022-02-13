@@ -11,6 +11,15 @@ export default function Footer() {
             href="https://github.com/penzur"
           >
             @penzur
+          </a>{' '}
+          | Buy me{' '}
+          <a
+            rel="noreferrer"
+            target="_blank"
+            className="blue"
+            href="https://www.buymeacoffee.com/penzur"
+          >
+            a coffee
           </a>
         </small>
       </p>
