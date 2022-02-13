@@ -19,6 +19,13 @@ a {
   text-decoration: none;
 }
 
+a.blue {
+  color: blue;
+  letter-spacing: 1px;
+  border-bottom: 1px solid blue;
+  padding-bottom: 4px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -58,15 +65,15 @@ a {
   background-color: #efefef;
   margin-bottom: 0;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 0.5px;
-  opacity: 0.75;
+  font-family: Inconsolata;
 }
 #container > footer::before {
   content: ' ';
   display: block;
   height: 1px;
-  width: 200px;
+  width: 64px;
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;

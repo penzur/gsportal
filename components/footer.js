@@ -3,7 +3,15 @@ export default function Footer() {
     <footer>
       <p>
         <small>
-          Built with <span style={{ color: 'red' }}>❤</span> by @penzur
+          Made with <span style={{ color: 'red' }}>❤</span> by{' '}
+          <a
+            className="blue"
+            rel="noreferrer"
+            target="_blank"
+            href="https://github.com/penzur"
+          >
+            @penzur
+          </a>
         </small>
       </p>
     </footer>

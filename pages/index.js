@@ -155,6 +155,8 @@ const Drop = styled.div`
   border: 2px dashed #666;
   padding: 32px;
   transition: box-shadow 0.3s;
+  font-family: Inconsolata;
+  text-align: center;
 
   &:hover {
     box-shadow: 0 20px 32px 0px rgba(0, 0, 0, 0.1);
@@ -188,11 +190,23 @@ const Main = () => {
   const fileRef = useRef()
   const [logs, setLogs] = useState()
   const [selected, setSelected] = useState()
+  const [maxLives, setMaxLives] = useState(0)
   const [selectedGuild, setSelectedGuild] = useState()
 
   const readFile = async ({ target }) => {
     const txt = await target?.files[0].text()
-    setLogs(parseLogs(txt))
+    const parsedLogs = parseLogs(txt)
+
+    setMaxLives(
+      Math.max(
+        ...parsedLogs.players
+          .filter((p) => p.name.trim())
+          .map((p) => {
+            return p.deaths.length
+          }),
+      ),
+    )
+    setLogs(parsedLogs)
   }
 
   const reset = (e) => {
@@ -204,14 +218,14 @@ const Main = () => {
 
   return (
     <>
-      <Head>
+      <Head key="k-head">
         <title>GSParser - Home</title>
       </Head>
 
       {logs ? (
-        <Content>
+        <Content key="k-content">
           <Nav>
-            <button onClick={reset}>BACK TO UPLOAD</button>
+            <button onClick={reset}>&larr; BACK</button>
           </Nav>
           <div className="split">
             <ul className="guild">
@@ -222,32 +236,28 @@ const Main = () => {
                 <span className="numbers">Points</span>
               </li>
               {logs.guilds.map((g, i) => (
-                <>
-                  <li
-                    key={`g-${g.name}-${i}`}
-                    className={selectedGuild === g.name ? 'selected' : ''}
-                    onClick={() => {
-                      if (selectedGuild === g.name) setSelectedGuild()
-                      else setSelectedGuild(g.name)
-                      setSelected()
-                    }}
-                  >
-                    <strong className="txt">
-                      {i === 0 ? (
-                        <>
-                          <Image src={crown} alt="crown" />
-                          &nbsp;&nbsp;
-                        </>
-                      ) : (
-                        <span className="idx">{i + 1}</span>
-                      )}
-                      {g.name}
-                    </strong>
-                    <span className="numbers">{g.players.length}</span>
-                    <span className="numbers">{g.kills}</span>
-                    <span className="numbers">{g.points}</span>
-                  </li>
-                </>
+                <li
+                  key={`g-${g.name}-${i}`}
+                  className={selectedGuild === g.name ? 'selected' : ''}
+                  onClick={() => {
+                    if (selectedGuild === g.name) setSelectedGuild()
+                    else setSelectedGuild(g.name)
+                    setSelected()
+                  }}
+                >
+                  <strong className="txt">
+                    {i === 0 ? (
+                      <Image src={crown} alt="crown" key="icn" />
+                    ) : (
+                      <span className="idx">{i + 1}</span>
+                    )}
+                    &nbsp;&nbsp;
+                    {g.name}
+                  </strong>
+                  <span className="numbers">{g.players.length}</span>
+                  <span className="numbers">{g.kills}</span>
+                  <span className="numbers">{g.points}</span>
+                </li>
               ))}
             </ul>
             <ul>
@@ -275,14 +285,12 @@ const Main = () => {
                   >
                     <strong className="txt">
                       {l.name === logs.players[0].name ? (
-                        <>
-                          <Image src={mvp} alt="mvp" />
-                          &nbsp;&nbsp;
-                        </>
+                        <Image src={mvp} alt="mvp" />
                       ) : (
                         <span className="idx">{i + 1}</span>
                       )}
-                      {l.name}
+                      &nbsp;&nbsp;
+                      {l.name.trim() || '-'}
                     </strong>
                     <span className="numbers">{l.guild}</span>
                     <span className="numbers">
@@ -291,34 +299,52 @@ const Main = () => {
                     <span className="numbers">{l.points}</span>
                   </li>
                   {selected === i ? (
-                    <li className="details" key="details">
+                    <li className="details" key={`k-details-${i}`}>
                       <div>
-                        <h4>KILLS</h4>
+                        <h4>
+                          {l.points === 0 ? 'BETTER LUCK NEXT TIME' : 'KILLS'}
+                        </h4>
                         <ul>
-                          {l.kills.map((l, i) => (
-                            <li key={`k-${i}`}>
-                              <small>LIFE {i + 1}</small>
-                              <ul className="code">
-                                {l.map((k) => (
-                                  <li key={`${k.ign}-${i}`}>
-                                    {k.ign}
-                                    <small className="right">{k.guild}</small>
-                                  </li>
-                                ))}
-                              </ul>
-                            </li>
-                          ))}
+                          {l.points !== 0 &&
+                            (() => {
+                              // fill empty lives
+                              if (l.kills.length < maxLives) {
+                                const diff = maxLives - l.kills.length
+                                l.kills.push(...Array(diff).fill([]))
+                              }
+                              return l.kills.slice(0, maxLives)
+                            })().map((l, i) => (
+                              <li key={`k-${i}`}>
+                                <small>LIFE {i + 1}</small>
+                                <ul className="code">
+                                  {l.map((k, x) => (
+                                    <li
+                                      key={`kills-${
+                                        k.name.trim() || '-'
+                                      }-${i}${x}`}
+                                    >
+                                      {k.name.trim() || '-'}
+                                      <small className="right">{k.guild}</small>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                       <div>
-                        <h4>DEATHS</h4>
+                        <h4>
+                          {l.deaths.length === 0
+                            ? 'FLAWLESS VICTORY!'
+                            : 'DEATHS'}
+                        </h4>
                         <ul>
                           {l.deaths.map((d, i) => (
-                            <li key={`${d.ign}`}>
+                            <li key={`deaths-${d.name.trim() || '-'}-${i}`}>
                               <small>LIFE {i + 1}</small>
                               <ul className="code">
-                                <li key={`${d.ign}-${i + 1}`}>
-                                  {d.ign}
+                                <li>
+                                  {d.name.trim() || '-'}
                                   <small className="right">{d.guild}</small>
                                 </li>
                               </ul>
@@ -328,7 +354,7 @@ const Main = () => {
                       </div>
                     </li>
                   ) : (
-                    ''
+                    <span key="spc2"></span>
                   )}
                 </>
               ))}
@@ -336,7 +362,7 @@ const Main = () => {
           </div>
         </Content>
       ) : (
-        <Upload>
+        <Upload key="k-upload">
           <input
             type="file"
             ref={fileRef}
@@ -350,7 +376,7 @@ const Main = () => {
               fileRef?.current?.click()
             }}
           >
-            <p>BROWSE PC FOR LOGS</p>
+            <p>CLICK TO SELECT LOGS FROM YOUR PC</p>
           </Drop>
         </Upload>
       )}

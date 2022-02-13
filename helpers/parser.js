@@ -29,12 +29,12 @@ export const parseLogs = (logs) => {
       // attacker and target data should not be empty or null
       if (!attacker || !target) return val
 
-      const [guild, ign] = attacker
+      const [guild, name] = attacker
       const [tarGuild, targetIgn] = target
 
       // init defaults
-      if (!val[ign]) {
-        val[ign] = { kills: [[]], deaths: [], guild, points: 0 }
+      if (!val[name]) {
+        val[name] = { kills: [[]], deaths: [], guild, points: 0 }
       }
       if (!val[targetIgn]) {
         val[targetIgn] = { kills: [[]], deaths: [], guild: tarGuild, points: 0 }
@@ -42,16 +42,16 @@ export const parseLogs = (logs) => {
 
       // ATTACKER
       // current life
-      const life = val[ign].deaths.length
-      val[ign].kills[life].push({
+      const life = val[name].deaths.length
+      val[name].kills[life].push({
         guild: tarGuild,
-        ign: targetIgn,
+        name: targetIgn,
         points,
       })
-      val[ign].points += points
+      val[name].points += points
 
       // TARGET
-      val[targetIgn].deaths.push({ guild: guild, ign: ign })
+      val[targetIgn].deaths.push({ guild: guild, name: name })
       // move to next life
       val[targetIgn].kills.push([])
 
