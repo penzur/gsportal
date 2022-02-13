@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { parseLogs } from '../helpers/parser'
+import { isVisible } from '../helpers/utils'
 import mvp from '../public/mvp.png'
 import crown from '../public/crown.png'
 
@@ -22,7 +23,13 @@ const Main = () => {
   const [logs, setLogs] = useState()
   const [selected, setSelected] = useState()
   const [maxLives, setMaxLives] = useState(0)
+  const [toFunc, setToFunc] = useState()
   const [selectedGuild, setSelectedGuild] = useState()
+
+  const debounce = (fn, to = 500) => {
+    if (toFunc) clearTimeout(toFunc)
+    setToFunc(setTimeout(fn, to))
+  }
 
   const readFile = async ({ target }) => {
     const txt = await target?.files[0].text()
@@ -118,9 +125,19 @@ const Main = () => {
                   <li
                     key={`p-${l.name}-${i}`}
                     className={selected === i ? 'selected' : ''}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault()
                       if (selected === i) setSelected()
                       else setSelected(i)
+
+                      debounce(() => {
+                        if (!isVisible(e.target))
+                          debounce(() =>
+                            e.target.scrollIntoView({
+                              behavior: 'smooth',
+                            }),
+                          )
+                      }, 100)
                     }}
                   >
                     <strong className="txt">
