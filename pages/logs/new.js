@@ -55,7 +55,7 @@ const New = () => {
   return (
     <Spinner spin={isLoading}>
       <Head key="k-head">
-        <title>logs - new</title>
+        <title>gs - new</title>
       </Head>
 
       {logs ? (

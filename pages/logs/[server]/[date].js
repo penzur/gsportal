@@ -12,7 +12,7 @@ export default function LogsByServerDate(log) {
     <Content>
       <Head>
         <title>
-          logs - {log.server}/{log.date}
+          gs - {log.server}/{log.date}
         </title>
       </Head>
       <Nav>
