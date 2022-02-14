@@ -7,6 +7,9 @@ body {
   height: 100%;
   font-family: 'D-DIN', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: transparent url(/freckles_solo.png) bottom 80px left 32px
+    no-repeat;
+  background-size: 8%;
   background-color: #eeeeee;
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.75);
