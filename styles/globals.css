@@ -28,6 +28,10 @@ a.blue {
 a.logo {
   font-size: 32px;
   font-weight: bold;
+  color: #333;
+}
+a.logo:hover {
+  color: #000;
 }
 
 * {
@@ -47,22 +51,41 @@ a.logo {
 
 #container > main {
   position: relative;
-  height: calc(100vh - 128px);
+  height: calc(100vh - 144px);
   flex: 1;
 }
 
 #container > header,
 #container > footer {
   position: relative;
-  height: 64px;
+  height: 72px;
   padding: 20px;
   display: flex;
   align-items: center;
 }
 
 #container > header {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #fff;
+  border-bottom: 1px solid #aaa;
+  color: #000;
+}
+#container > header > div {
+  flex: 1;
+  width: 100%;
+  display: block;
+}
+#container > header > div a:not(.logo) {
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 5px;
+  outline: none;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+#container > header > div a:not(.logo):hover {
+  color: #000000;
 }
 #container > footer {
   background-color: #eeeeee;
@@ -77,7 +100,7 @@ a.logo {
   display: block;
   height: 1px;
   width: 64px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #aaa;
   position: absolute;
   top: 0;
 }
@@ -114,6 +137,10 @@ a.logo {
 .right {
   float: right;
 }
-.silence {
-  opacity: 0.75;
+.center {
+  text-align: center;
+}
+.mute {
+  opacity: 0.3;
+  font-weight: normal;
 }

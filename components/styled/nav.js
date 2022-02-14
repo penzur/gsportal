@@ -4,6 +4,9 @@ const Nav = styled.div`
   height: 64px;
   display: flex;
   align-items: center;
+  & > * {
+    flex: 1;
+  }
 
   button {
     cursor: pointer;
@@ -16,9 +19,11 @@ const Nav = styled.div`
     color: #666;
     font-size: 12px;
     letter-spacing: 1px;
+    transition: background-color 0.3s;
     &:hover {
-      box-shadow: 0 20px 32px 0px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s;
+      background-color: #000000;
+      color: #ffffff;
+      transition: background-color 0.3s;
     }
   }
 `

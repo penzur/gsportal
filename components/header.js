@@ -3,9 +3,16 @@ import Link from 'next/link'
 export default function Header() {
   return (
     <header>
-      <Link href="/">
-        <a className="logo">GSParser</a>
-      </Link>
+      <div>
+        <Link href="/">
+          <a className="logo">.logs</a>
+        </Link>
+      </div>
+      <div>
+        <Link href="/logs/new">
+          <a className="right">UPLOAD LOGS</a>
+        </Link>
+      </div>
     </header>
   )
 }
