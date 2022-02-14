@@ -243,4 +243,12 @@ const Main = () => {
   )
 }
 
+export const getStaticProps = async () => {
+  return {
+    props: {
+      a: 123,
+    },
+  }
+}
+
 export default Main

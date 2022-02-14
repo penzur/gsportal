@@ -127,6 +127,29 @@ const Content = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 1200px) {
+    .split {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 720px) {
+    .split {
+      & > ul {
+        width: 100%;
+        & > li.details {
+          display: block !important;
+          & > div:first-child::before {
+            display: none;
+          }
+          & > div:last-child {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
 `
 
 export default Content
