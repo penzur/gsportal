@@ -10,6 +10,6 @@ export default async (req, res) => {
         q.Lambda((server) => q.Get(server)),
       ),
     )
-    res.status(200).json(JSON.stringify(query.data))
+    res.status(200).json(JSON.stringify(query.data.map((d) => d.data)))
   }
 }
