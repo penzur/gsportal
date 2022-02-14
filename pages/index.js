@@ -57,7 +57,7 @@ export default ({ logs }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch('/logs')
   const logs = await res.json()
   return {

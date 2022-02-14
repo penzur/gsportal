@@ -28,23 +28,7 @@ export default function LogsByServerDate(log) {
   )
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(`/logs`)
-  const logs = await res.json()
-  return {
-    paths: logs.map((l) => {
-      return {
-        params: {
-          date: l.date.toString(),
-          server: l.server,
-        },
-      }
-    }),
-    fallback: false,
-  }
-}
-
-export async function getStaticProps(ctx) {
+export async function getServerSideProps(ctx) {
   const { server = '', date = 0 } = ctx.params
   const res = await fetch(`/log?server=${server}&date=${parseInt(date)}`)
   const log = await res.json()
