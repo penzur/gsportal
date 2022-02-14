@@ -9,6 +9,6 @@ export default async (req, res) => {
     let query = await faunaClient.query(
       q.Get(q.Match('logs_by_server_and_date', server, parseInt(date))),
     )
-    res.status(200).json(query.data)
+    res.status(200).json(JSON.stringify(query.data))
   }
 }

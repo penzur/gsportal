@@ -12,15 +12,17 @@ export default async (req, res) => {
         ),
       )
       res.status(200).json(
-        query.data.map(({ data: { server, date, guilds, players } }) => ({
-          server,
-          date,
-          winner: guilds[0]?.name,
-          mvp: players[0]?.name,
-        })),
+        JSON.stringify(
+          query.data.map(({ data: { server, date, guilds, players } }) => ({
+            server,
+            date,
+            winner: guilds[0]?.name,
+            mvp: players[0]?.name,
+          })),
+        ),
       )
     } catch (error) {
-      res.status(400).json({ error: error.message })
+      res.status(400).json(JSON.stringify({ error: error.message }))
     }
   }
 }

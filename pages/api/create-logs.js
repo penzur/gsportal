@@ -4,9 +4,11 @@ import { faunaClient } from '../../helpers/fauna'
 // eslint-disable-next-line
 export default async (req, res) => {
   if (req.method !== 'POST') {
-    return res.status(404).json({
-      error: 'Not found',
-    })
+    return res.status(404).json(
+      JSON.stringify({
+        error: 'Not found',
+      }),
+    )
   }
 
   const logs = JSON.parse(req.body)
@@ -17,12 +19,16 @@ export default async (req, res) => {
         data: logs,
       }),
     )
-    res.status(200).json({
-      status: 'success',
-    })
+    res.status(200).json(
+      JSON.stringify({
+        status: 'success',
+      }),
+    )
   } catch (e) {
-    res.status(400).json({
-      error: e.message,
-    })
+    res.status(400).json(
+      JSON.stringify({
+        error: e.message,
+      }),
+    )
   }
 }
