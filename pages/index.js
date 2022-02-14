@@ -1,15 +1,24 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import styled from 'styled-components'
 
 import fetch from '../helpers/fetch'
 import Content from '../components/styled/content'
 import LogView from '../components/styled/logview'
 
+import crown from '../public/crown.png'
+import mvp from '../public/mvp.png'
+
 const List = styled.div`
-  width: 720px;
+  padding-top: 50px;
+  max-width: 720px;
   margin: 0 auto;
   & > div {
     flex-direction: column;
+  }
+  img {
+    width: 16px !important;
+    height: 16px !important;
   }
 `
 
@@ -23,14 +32,18 @@ export default ({ logs }) => {
 
       <List>
         <LogView>
-          <h1 className="center">Recently Uploaded Logs</h1>
+          <h1 className="center">Recent Sieges</h1>
           <ul>
             <li className="head">
               <span className="numbers">Date</span>
               <span className="numbers"></span>
-              <span className="txt">Server</span>
-              <span className="txt">Winner</span>
-              <span className="numbers">MVP</span>
+              <span className="txt center">Server</span>
+              <span className="txt center">
+                <Image src={crown} alt="crown" />
+              </span>
+              <span className="txt center">
+                <Image src={mvp} alt="mvp" />
+              </span>
             </li>
             {logs
               .sort((a, b) => b.date - a.date)
@@ -45,9 +58,12 @@ export default ({ logs }) => {
                     {new Date(l.date).toLocaleString().split(',')[0]}
                   </span>
                   <span className="numbers"></span>
-                  <span className="txt">{l.server}</span>
-                  <span className="txt">{l.winner}</span>
-                  <span className="numbers">{l.mvp}</span>
+                  <span className="txt center">{l.server}</span>
+                  <span className="txt center">&nbsp; {l.winner}</span>
+                  <span className="txt center">
+                    &nbsp;
+                    {l.mvp}
+                  </span>
                 </li>
               ))}
           </ul>

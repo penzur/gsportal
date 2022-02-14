@@ -21,6 +21,10 @@ const LogView = styled.div`
         display: flex;
         align-items: center;
       }
+      & > span {
+        display: flex;
+        align-items: center;
+      }
       .txt {
         flex: 1;
         .idx {
@@ -30,6 +34,9 @@ const LogView = styled.div`
           font-family: 'D-DIN Condensed';
           font-weight: normal;
           opacity: 0.5;
+        }
+        &.center {
+          justify-content: center;
         }
       }
       .numbers {

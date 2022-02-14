@@ -5,7 +5,9 @@ export default function Header() {
     <header>
       <div>
         <Link href="/">
-          <a className="logo">.logs</a>
+          <a className="logo">
+            <span className="mute">/</span>gs
+          </a>
         </Link>
       </div>
       <div>
