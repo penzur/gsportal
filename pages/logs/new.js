@@ -8,7 +8,7 @@ import Spinner from '../../components/spinner'
 import Drop from '../../components/drop'
 import DropDown from '../../components/ui/dropdown'
 
-import fetch from '../../helpers/fetch'
+import sfetch from '../../helpers/fetch'
 
 const Upload = styled.div`
   height: 100%;
@@ -121,7 +121,7 @@ const New = ({ servers }) => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('/servers')
+  const res = await sfetch('/servers')
   const servers = await res.json()
   return {
     props: {
