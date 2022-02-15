@@ -66,7 +66,7 @@ const New = ({ servers }) => {
 
     const txt = await file.text()
     const parsedLogs = parseLogs(txt)
-    parsedLogs.server = 'playpark-rhisis'
+    parsedLogs.server = server || 'playpark-rhisis'
     parsedLogs.date = file.lastModified
 
     setLogs(parsedLogs)
