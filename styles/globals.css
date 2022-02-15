@@ -141,4 +141,5 @@ a.logo {
 .mute {
   opacity: 0.3;
   font-weight: normal;
+  margin: 0 0.5em;
 }

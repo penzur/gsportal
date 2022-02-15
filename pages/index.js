@@ -23,7 +23,7 @@ const List = styled.div`
 `
 
 // eslint-disable-next-line
-export default ({ logs }) => {
+export default ({ logs = [], servers = {} }) => {
   return (
     <Content>
       <Head>
@@ -58,7 +58,9 @@ export default ({ logs }) => {
                     {new Date(l.date).toLocaleString().split(',')[0]}
                   </span>
                   <span className="numbers"></span>
-                  <span className="txt center">{l.server}</span>
+                  <span className="txt center">
+                    {servers.find((s) => s.slug === l.server)?.label}
+                  </span>
                   <span className="txt center">&nbsp; {l.winner}</span>
                   <span className="txt center">
                     &nbsp;
@@ -74,9 +76,11 @@ export default ({ logs }) => {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('/logs')
+  let res = await fetch('/logs')
   const logs = await res.json()
+  res = await fetch('/servers')
+  const servers = await res.json()
   return {
-    props: { logs },
+    props: { logs, servers },
   }
 }
