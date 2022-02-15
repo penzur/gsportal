@@ -5,7 +5,7 @@ export default function Footer() {
         <small>
           Made with <span style={{ color: 'red' }}>❤</span> by{' '}
           <a
-            className="blue"
+            className="border"
             rel="noreferrer"
             target="_blank"
             href="https://github.com/penzur"
@@ -16,7 +16,7 @@ export default function Footer() {
           <a
             rel="noreferrer"
             target="_blank"
-            className="blue"
+            className="border"
             href="https://www.buymeacoffee.com/penzur"
           >
             a coffee

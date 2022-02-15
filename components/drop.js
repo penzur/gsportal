@@ -1,8 +1,19 @@
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import styled from 'styled-components'
 
+const Cover = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #efefefaa;
+`
+
 const Wrap = styled.div`
-  width: 400px;
+  position: relative;
+  width: 100%;
   border-radius: 8px;
   font-weight: bold;
   display: flex;
@@ -27,8 +38,40 @@ const Wrap = styled.div`
     padding-top: 10px;
   }
 
-  p.icon {
-    font-size: 32px;
+  .file {
+    position: relative;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid #cccccc;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 200px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Inconsolata;
+    button {
+      cursor: pointer;
+      position: absolute;
+      top: -11px;
+      right: -11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #000000;
+      border-radius: 100px;
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      color: #ffffff;
+      background-color: #000000;
+    }
+    .icon {
+      font-size: 50px;
+      margin: 16px 0 32px;
+      opacity: 0.5;
+    }
   }
 
   p > button {
@@ -53,7 +96,7 @@ const Wrap = styled.div`
 `
 
 const Target = styled.div`
-  width: 340px;
+  width: 100%;
   height: 160px;
   border: 2px dashed #aaa;
   background-color: #efefef;
@@ -67,16 +110,26 @@ const Target = styled.div`
   }
 `
 
-export default function Drop({ onFile }) {
+export default function Drop({ onFile, disabled }) {
   const inputRef = useRef()
+  const [file, setFile] = useState()
 
   const onChange = ({ target }) => {
-    onFile(target?.files[0])
+    const f = target?.files[0]
+    setFile(f)
+    onFile(f)
     inputRef.current.value = ''
   }
 
   const clickFile = () => {
     inputRef.current.click()
+  }
+
+  const reset = (e) => {
+    e.preventDefault()
+    inputRef.current.value = ''
+    setFile()
+    onFile()
   }
 
   return (
@@ -89,34 +142,44 @@ export default function Drop({ onFile }) {
         accept="text/plain"
         style={{ display: 'none' }}
       />
-      <Target
-        onDragOver={(e) => {
-          e.preventDefault()
-          e.target.classList.add('dragover')
-        }}
-        onDragLeave={(e) => {
-          e.preventDefault()
-          e.target.classList.remove('dragover')
-        }}
-        onDragEnter={(e) => e.preventDefault()}
-        onDrop={(e) => {
-          e.preventDefault()
-          const file = e.dataTransfer?.files[0]
-          if (file.name.split('.').pop().match(/txt/i)) {
-            onFile(file)
-          }
-          inputRef.current.value = ''
-          e.target.classList.remove('dragover')
-        }}
-      >
-        Drag &amp; Drop File
-      </Target>
-      <p className="center code">
-        <small>OR</small>
-      </p>
-      <p>
-        <button onClick={clickFile}>BROWSE FILES</button>
-      </p>
+      {file ? (
+        <div className="file">
+          <button onClick={reset}>✖</button>
+          <p className="icon">📄</p>
+          <p>{file.name}</p>
+        </div>
+      ) : (
+        <>
+          <Target
+            onDragOver={(e) => {
+              e.preventDefault()
+              e.target.classList.add('dragover')
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault()
+              e.target.classList.remove('dragover')
+            }}
+            onDragEnter={(e) => e.preventDefault()}
+            onDrop={(e) => {
+              e.preventDefault()
+              const f = e.dataTransfer?.files[0]
+              setFile(f)
+              onFile(f)
+              inputRef.current.value = ''
+              e.target.classList.remove('dragover')
+            }}
+          >
+            Drag &amp; Drop File
+          </Target>
+          <p className="center code">
+            <small>OR</small>
+          </p>
+          <p>
+            <button onClick={clickFile}>BROWSE YOUR PC</button>
+          </p>
+        </>
+      )}
+      {disabled && <Cover />}
     </Wrap>
   )
 }

@@ -27,7 +27,7 @@ export default ({ logs }) => {
   return (
     <Content>
       <Head>
-        <title>gs - home</title>
+        <title>GS - Home</title>
       </Head>
 
       <List>

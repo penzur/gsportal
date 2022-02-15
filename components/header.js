@@ -6,7 +6,21 @@ export default function Header() {
       <div>
         <Link href="/">
           <a className="logo">
-            <span className="mute">/</span>gs
+            GS
+            <span className="mute">
+              <small
+                style={{
+                  fontSize: 16,
+                  position: 'relative',
+                  fontFamily: 'Inconsolata',
+                  top: -5,
+                  left: 2,
+                }}
+              >
+                {' '}
+                / BETA
+              </small>
+            </span>
           </a>
         </Link>
       </div>
