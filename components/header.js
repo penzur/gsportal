@@ -17,7 +17,6 @@ export default function Header() {
                   left: 2,
                 }}
               >
-                {' '}
                 / BETA
               </small>
             </span>
