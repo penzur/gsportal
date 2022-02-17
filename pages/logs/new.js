@@ -11,14 +11,18 @@ import DropDown from '../../components/ui/dropdown'
 import sfetch from '../../helpers/fetch'
 
 const Upload = styled.div`
+  position: relative;
   height: 100%;
-  margin: 0 auto;
-  min-width: 320px;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  overflow: auto;
+  text-align: center;
+  padding: 32px 0;
+
+  .wrap {
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 400px;
+  }
 
   button.save {
     width: 100%;
@@ -99,22 +103,24 @@ const New = ({ servers }) => {
       </Head>
 
       <Upload key="k-upload">
-        <h2>Add New Entry</h2>
-        <br />
+        <div className="wrap">
+          <h2>Add New Entry</h2>
+          <br />
 
-        <DropDown
-          data={servers?.map((s) => ({
-            label: s.label,
-            value: s.slug,
-          }))}
-          onChange={setServer}
-        />
+          <DropDown
+            data={servers?.map((s) => ({
+              label: s.label,
+              value: s.slug,
+            }))}
+            onChange={setServer}
+          />
 
-        <Drop onFile={readFile} disabled={!server} />
+          <Drop onFile={readFile} disabled={!server} />
 
-        <button className="save" disabled={!logs} onClick={save}>
-          UPLOAD NOW
-        </button>
+          <button className="save" disabled={!logs} onClick={save}>
+            UPLOAD NOW
+          </button>
+        </div>
       </Upload>
     </Spinner>
   )

@@ -27,6 +27,10 @@ export default function Header() {
         <Link href="/logs/new">
           <a className="right">UPLOAD LOGS</a>
         </Link>
+        <span className="mute right">|</span>
+        <Link href="/calculator">
+          <a className="right">CALCULATOR</a>
+        </Link>
       </div>
     </header>
   )

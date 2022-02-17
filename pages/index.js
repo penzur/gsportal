@@ -10,7 +10,6 @@ import crown from '../public/crown.png'
 import mvp from '../public/mvp.png'
 
 const List = styled.div`
-  padding-top: 50px;
   max-width: 720px;
   margin: 0 auto;
   & > div {
