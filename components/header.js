@@ -25,11 +25,11 @@ export default function Header() {
       </div>
       <div>
         <Link href="/logs/new">
-          <a className="right">UPLOAD LOGS</a>
+          <a className="right">↥ UPLOAD LOGS</a>
         </Link>
         <span className="mute right">|</span>
         <Link href="/calculator">
-          <a className="right">CALCULATOR</a>
+          <a className="right">λ CALCULATOR</a>
         </Link>
       </div>
     </header>
