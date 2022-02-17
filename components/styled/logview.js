@@ -14,6 +14,9 @@ const LogView = styled.div`
       margin-bottom: 5px;
       border-radius: 5px;
       border-bottom: 1px solid #dddddd;
+      &:not(.head) {
+        min-height: 64px;
+      }
       display: flex;
       align-items: center;
       transition: background-color 0.3s, color 0.3s;

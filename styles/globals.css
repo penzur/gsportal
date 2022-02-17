@@ -9,7 +9,7 @@ body {
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: transparent url(/kid.png) bottom 70px left 16px no-repeat;
   background-size: 200px;
-  background-color: #eeeeee;
+  background-color: #e9eeff;
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.75);
   -webkit-font-smoothing: antialiased;
@@ -91,7 +91,7 @@ a.logo {
 }
 
 #container > footer {
-  background-color: #eeeeee;
+  background-color: #e9eeff;
   margin-bottom: 0;
   text-transform: uppercase;
   font-size: 18px;

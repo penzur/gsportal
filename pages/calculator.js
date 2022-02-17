@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Content from '../components/styled/content'
 
 const Calc = styled.div`
-  margin: 64px auto;
+  margin: 0 auto;
   min-width: 320px;
   max-width: 400px;
 
@@ -15,12 +15,11 @@ const Calc = styled.div`
     margin: 32px 0;
     background-color: #ffffff;
     border-radius: 5px;
-    border: 1px solid #cccccc;
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.05);
     overflow: hidden;
   }
 
   .switch {
+    border: 1px solid #0000ff;
     display: flex;
     align-items: center;
     height: 64px;
@@ -30,7 +29,9 @@ const Calc = styled.div`
       justify-content: center;
       align-items: center;
       height: 100%;
-      color: #999;
+      color: #0000ff;
+      font-weight: bold;
+      font-size: 16px;
       letter-spacing: 1.5px;
       -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -42,20 +43,21 @@ const Calc = styled.div`
 
       &.selected {
         color: #ffffff;
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: rgba(0, 0, 255, 0.75);
       }
       &:not(.selected) {
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
         &:hover {
-          background-color: #efefef;
-          color: #333333;
+          background-color: rgba(0, 0, 255, 0.1);
+          color: #0000aa;
         }
       }
     }
   }
 
   main {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.05);
     .outputs {
       padding: 64px 32px;
       .output {
@@ -164,21 +166,6 @@ export default () => {
       <Calc>
         <h2 className="center">Calculator</h2>
 
-        <div className="switch">
-          <span
-            className={isHop ? '' : 'selected'}
-            onClick={isHop ? toggle : undefined}
-          >
-            ASAL
-          </span>
-          <span
-            className={isHop ? 'selected' : ''}
-            onClick={isHop ? undefined : toggle}
-          >
-            HOP
-          </span>
-        </div>
-
         <main>
           <div className="outputs">
             <div className="output">
@@ -227,6 +214,21 @@ export default () => {
             )}
           </div>
         </main>
+
+        <div className="switch">
+          <span
+            className={isHop ? '' : 'selected'}
+            onClick={isHop ? toggle : undefined}
+          >
+            ASAL
+          </span>
+          <span
+            className={isHop ? 'selected' : ''}
+            onClick={isHop ? undefined : toggle}
+          >
+            HOP
+          </span>
+        </div>
       </Calc>
     </Content>
   )

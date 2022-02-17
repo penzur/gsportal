@@ -16,10 +16,10 @@ const Upload = styled.div`
   width: 100%;
   overflow: auto;
   text-align: center;
-  padding: 32px 0;
+  padding: 20px;
 
   .wrap {
-    margin: 32px auto;
+    margin: 0 auto;
     min-width: 320px;
     max-width: 400px;
 
@@ -40,6 +40,7 @@ const Upload = styled.div`
     background-color: transparent;
     color: #0000ff;
     font-weight: bold;
+    font-family: D-DIN;
     letter-spacing: 1.5px;
     border: 1px solid #0000ff;
     background-color: #ffffff;
