@@ -131,9 +131,54 @@ a.logo {
 }
 
 @media (max-width: 600px) {
+  body {
+    background-size: 0;
+  }
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  #container > header > div a {
+    font-size: 28px;
+  }
+  #container > header > div a:not(.logo) {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+    width: 320px;
+  }
+
+  ul > li {
+    font-size: 12px;
+  }
+  ul > li .txt.center {
+    justify-content: flex-start;
+  }
+  ul > li .numbers {
+    width: 64px !important;
+  }
+  ul > li .txt img {
+    width: 16px !important;
+    height: 16px !important;
+    object-fit: contain;
+  }
+  ul > li .txt span {
+    width: 16px;
+    height: 16px;
+    margin-right: 13px !important;
+  }
+  ul > li.head > span {
+    font-size: 12px;
+    font-weight: normal;
+  }
+
+  footer p {
+    font-size: 12px;
   }
 }
 

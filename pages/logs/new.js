@@ -19,9 +19,13 @@ const Upload = styled.div`
   padding: 32px 0;
 
   .wrap {
-    margin: 0 auto;
+    margin: 32px auto;
     min-width: 320px;
     max-width: 400px;
+
+    @media screen and (max-width: 600px) {
+      margin: 32px;
+    }
   }
 
   button.save {

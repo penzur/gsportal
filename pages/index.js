@@ -19,6 +19,14 @@ const List = styled.div`
     width: 16px !important;
     height: 16px !important;
   }
+  .txtw {
+    flex: 1;
+  }
+  @media screen and (max-width: 600px) {
+    .txtw {
+      flex: 2;
+    }
+  }
 `
 
 // eslint-disable-next-line
@@ -31,16 +39,15 @@ export default ({ logs = [], servers = {} }) => {
 
       <List>
         <LogView>
-          <h1 className="center">Recent Sieges</h1>
+          <h2 className="center">Recent Sieges</h2>
           <ul>
             <li className="head">
-              <span className="numbers">Date</span>
-              <span className="numbers"></span>
-              <span className="txt center">Server</span>
-              <span className="txt center">
+              <span className="txt">Date</span>
+              <span className="txtw">Server</span>
+              <span className="txt">
                 <Image src={crown} alt="crown" />
               </span>
-              <span className="txt center">
+              <span className="txt">
                 <Image src={mvp} alt="mvp" />
               </span>
             </li>
@@ -53,15 +60,14 @@ export default ({ logs = [], servers = {} }) => {
                     window.location.href = `/logs/${l.server}/${l.date}`
                   }}
                 >
-                  <span className="numbers">
+                  <span className="txt">
                     {new Date(l.date).toLocaleString().split(',')[0]}
                   </span>
-                  <span className="numbers"></span>
-                  <span className="txt center">
+                  <span className="txtw">
                     {servers.find((s) => s.slug === l.server)?.label}
                   </span>
-                  <span className="txt center">&nbsp; {l.winner}</span>
-                  <span className="txt center">
+                  <span className="txt">&nbsp; {l.winner}</span>
+                  <span className="txt">
                     &nbsp;
                     {l.mvp}
                   </span>
