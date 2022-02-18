@@ -15,16 +15,29 @@ const List = styled.div`
   & > div {
     flex-direction: column;
   }
-  img {
+  .txt > span {
+    display: inline-block;
     width: 16px !important;
     height: 16px !important;
+    border: 1px solid red;
+    margin-right: 8px !important;
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+    }
   }
   .txtw {
     flex: 1;
   }
   @media screen and (max-width: 600px) {
     .txtw {
-      flex: 2;
+      text-overflow: ellipsis !important;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    img {
+      display: none !important;
     }
   }
 `
@@ -39,17 +52,13 @@ export default ({ logs = [], servers = {} }) => {
 
       <List>
         <LogView>
-          <h2 className="center">Recent Sieges</h2>
+          <h2 className="center">Most Recent Logs</h2>
           <ul>
             <li className="head">
               <span className="txt">Date</span>
               <span className="txtw">Server</span>
-              <span className="txt">
-                <Image src={crown} alt="crown" />
-              </span>
-              <span className="txt">
-                <Image src={mvp} alt="mvp" />
-              </span>
+              <span className="txt">CROWN</span>
+              <span className="txt">MVP</span>
             </li>
             {logs
               .sort((a, b) => b.date - a.date)
@@ -66,9 +75,12 @@ export default ({ logs = [], servers = {} }) => {
                   <span className="txtw">
                     {servers.find((s) => s.slug === l.server)?.label}
                   </span>
-                  <span className="txt">&nbsp; {l.winner}</span>
                   <span className="txt">
-                    &nbsp;
+                    <Image src={crown} alt="crown" />
+                    {l.winner}
+                  </span>
+                  <span className="txt">
+                    <Image src={mvp} alt="mvp" />
                     {l.mvp}
                   </span>
                 </li>
