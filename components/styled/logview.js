@@ -49,7 +49,7 @@ const LogView = styled.div`
       }
       &:hover,
       &.selected {
-        background-color: #666;
+        background-color: rgb(104 104 149);
         color: #ffffff;
       }
       &.head {
@@ -69,7 +69,7 @@ const LogView = styled.div`
       &.details {
         cursor: default;
         position: relative;
-        background-color: #333;
+        background-color: rgb(45 45 76);
         border-top: 1px solid rgba(255, 255, 255, 0.3);
         color: rgba(255, 255, 255, 0.7);
         border-top-left-radius: 0;
