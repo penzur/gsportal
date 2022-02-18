@@ -53,8 +53,8 @@ const LogView = styled.div`
         color: #ffffff;
       }
       &.head {
-        background-color: #cccccc;
-        color: #000000;
+        background-color: rgb(104 104 149);
+        color: #ffffff;
         padding: 8px 16px;
         text-transform: uppercase;
         font-size: 12px;
