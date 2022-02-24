@@ -8,7 +8,7 @@ export default function Footer() {
             className="border"
             rel="noreferrer"
             target="_blank"
-            href="https://github.com/penzur"
+          href="https://elizarpepino.com"
           >
             @penzur
           </a>{' '}
