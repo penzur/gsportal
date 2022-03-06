@@ -7,7 +7,6 @@ export const parseLogs = (logs) => {
       const [line1, line2] = n
       // parse guild and player details from the first line
       const [attacker, target] = line1
-        .replace(/ Attack .+\[/, ' Attack [')
         .split(/\sattack\s[^\w]+\s/i)
         .map((str) => {
           const chunks = str.replace(/\(.+\)/i, '').split(' ')
