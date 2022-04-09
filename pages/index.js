@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from 'styled-components'
@@ -5,6 +6,7 @@ import styled from 'styled-components'
 import fetch from '../helpers/fetch'
 import Content from '../components/styled/content'
 import LogView from '../components/styled/logview'
+import DropDown from '../components/ui/dropdown'
 
 import crown from '../public/crown.png'
 import mvp from '../public/mvp.png'
@@ -44,6 +46,8 @@ const List = styled.div`
 
 // eslint-disable-next-line
 export default ({ logs = [], servers = {} }) => {
+  const [selected, setSelected] = useState('all')
+
   return (
     <Content>
       <Head>
@@ -52,8 +56,23 @@ export default ({ logs = [], servers = {} }) => {
 
       <List>
         <LogView>
-          <h2 className="center">Most Recent Logs</h2>
-          <ul key="main">
+          <h2 className="center">Siege Logs</h2>
+          <DropDown
+            data={[
+              {
+                label: 'All Servers',
+                value: 'all',
+              },
+              ...servers?.map((s) => ({
+                label: s.label,
+                value: s.slug,
+              })),
+            ]}
+            defaultValue="all"
+            label="All Servers"
+            onChange={setSelected}
+          />
+          <ul key="main" style={{ marginTop: 0 }}>
             <li className="head">
               <span className="txt">Date</span>
               <span className="txtw">Server</span>
@@ -62,6 +81,10 @@ export default ({ logs = [], servers = {} }) => {
             </li>
             {logs
               .sort((a, b) => b.date - a.date)
+              .filter((l) => {
+                if (selected === 'all') return true
+                return l.server === selected
+              })
               .map((l) => (
                 <li
                   key={l.date}

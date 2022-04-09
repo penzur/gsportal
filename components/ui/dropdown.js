@@ -79,8 +79,13 @@ const Wrap = styled.div`
 `
 
 // eslint-disable-next-line
-export default ({ data = [], onChange }) => {
-  const [selected, setSelected] = useState()
+export default ({
+  data = [],
+  onChange,
+  label = 'Pick an item',
+  defaultValue,
+}) => {
+  const [selected, setSelected] = useState(defaultValue)
   const [open, setOpen] = useState()
 
   const close = () => {
@@ -103,9 +108,7 @@ export default ({ data = [], onChange }) => {
     >
       <div className="label">
         <div>
-          {selected
-            ? data.find((d) => selected === d.value)?.label
-            : 'Choose a server'}
+          {selected ? data.find((d) => selected === d.value)?.label : label}
         </div>
         <div className="right">
           <span>↕</span>

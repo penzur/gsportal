@@ -131,6 +131,7 @@ const New = ({ servers }) => {
               label: s.label,
               value: s.slug,
             }))}
+            label="Select a server"
             onChange={setServer}
           />
 
