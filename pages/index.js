@@ -53,7 +53,7 @@ export default ({ logs = [], servers = {} }) => {
       <List>
         <LogView>
           <h2 className="center">Most Recent Logs</h2>
-          <ul>
+          <ul key="main">
             <li className="head">
               <span className="txt">Date</span>
               <span className="txtw">Server</span>
@@ -92,7 +92,7 @@ export default ({ logs = [], servers = {} }) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   let res = await fetch('/logs')
   const logs = await res.json()
   res = await fetch('/servers')

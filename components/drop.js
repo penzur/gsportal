@@ -24,7 +24,14 @@ const Wrap = styled.div`
   background-color: #fff;
   padding: 32px;
   transition: box-shadow 0.3s;
+  border: 1px solid blue;
   box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.05);
+  ${({ disabled }) =>
+    disabled &&
+    `
+    pointer-events: none;
+  border: 1px solid #efefef;
+  `}
 
   p {
     margin: 8px 0;
@@ -41,14 +48,14 @@ const Wrap = styled.div`
   .file {
     position: relative;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.03);
-    border: 1px solid #cccccc;
+    background-color: #0000ff11;
+    border: 1px solid blue;
+    color: blue;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
     height: 200px;
-    border-radius: 5px;
     text-align: center;
     font-family: Inconsolata;
     button {
@@ -65,7 +72,7 @@ const Wrap = styled.div`
       width: 24px;
       height: 24px;
       color: #ffffff;
-      background-color: #000000;
+      background-color: blue;
     }
     .icon {
       font-size: 50px;
@@ -80,15 +87,15 @@ const Wrap = styled.div`
     padding: 20px;
     border-radius: 5px;
     outline: none;
-    background-color: #fff;
+    background-color: #0000ff11;
     outline: none;
-    border: 1px solid #999;
-    color: #666;
+    border: 1px solid blue;
+    color: blue;
     font-size: 12px;
     letter-spacing: 1px;
     transition: background-color 0.3s;
     &:hover {
-      background-color: #000000;
+      background-color: blue;
       transition: background-color 0.3s;
       color: #ffffff;
     }
@@ -98,15 +105,18 @@ const Wrap = styled.div`
 const Target = styled.div`
   width: 100%;
   height: 160px;
-  border: 2px dashed #aaa;
-  background-color: #efefef;
+  border: 2px dashed #0000ff44;
+  background-color: #0000ff11;
+  color: #0000ffaa;
   display: flex;
   font-family: Inconsolata;
   font-weight: normal;
   justify-content: center;
   align-items: center;
   &.dragover {
-    background-color: #dfdfdf;
+    background-color: #0000ff11;
+    border: 2px dashed blue;
+    color: blue;
   }
 `
 
@@ -116,6 +126,8 @@ export default function Drop({ onFile, disabled }) {
 
   const onChange = ({ target }) => {
     const f = target?.files[0]
+    // should be text/plain only and not more than 256kb
+    if (!f || f.type !== 'text/plain' || f.size > 256000) return false
     setFile(f)
     onFile(f)
     inputRef.current.value = ''
@@ -133,7 +145,7 @@ export default function Drop({ onFile, disabled }) {
   }
 
   return (
-    <Wrap>
+    <Wrap disabled={disabled}>
       <input
         ref={inputRef}
         type="file"
@@ -162,11 +174,12 @@ export default function Drop({ onFile, disabled }) {
             onDragEnter={(e) => e.preventDefault()}
             onDrop={(e) => {
               e.preventDefault()
+              e.target.classList.remove('dragover')
               const f = e.dataTransfer?.files[0]
+              if (!f || f.type !== 'text/plain' || f.size > 256000) return false
               setFile(f)
               onFile(f)
               inputRef.current.value = ''
-              e.target.classList.remove('dragover')
             }}
           >
             Drag &amp; Drop File

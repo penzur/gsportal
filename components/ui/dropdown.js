@@ -12,9 +12,10 @@ const Wrap = styled.div`
   border-radius: 5px;
   margin-bottom: 16px;
   cursor: pointer;
+  outline: 1px solid blue;
 
   .label {
-    color: #999;
+    color: blue;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -34,6 +35,7 @@ const Wrap = styled.div`
 
   &:hover {
     outline: 1px solid blue;
+    background-color: #efefef;
     .label {
       color: blue;
     }

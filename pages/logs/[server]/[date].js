@@ -31,13 +31,28 @@ export default ({ log, servers }) => {
   )
 }
 
-export async function getServerSideProps(ctx) {
-  const { server = '', date = 0 } = ctx.params
-  let res = await fetch(`/log?server=${server}&date=${parseInt(date)}`)
+export async function getStaticProps(ctx) {
+  const { server = '', date = '' } = ctx.params
+  let res = await fetch(`/log?server=${server}&date=${date}`)
   const log = await res.json()
   res = await fetch('/servers')
   const servers = await res.json()
   return {
     props: { log, servers },
+  }
+}
+
+export async function getStaticPaths() {
+  const res = await fetch('/logs')
+  const logs = await res.json()
+  const paths = logs.map((l) => ({
+    params: {
+      server: l.server,
+      date: l.date.toString(),
+    },
+  }))
+  return {
+    paths,
+    fallback: false,
   }
 }

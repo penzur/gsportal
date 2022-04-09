@@ -23,6 +23,10 @@ const Upload = styled.div`
     min-width: 320px;
     max-width: 400px;
 
+    p {
+      line-height: 1.3;
+    }
+
     @media screen and (max-width: 600px) {
       margin: 32px;
     }
@@ -38,12 +42,12 @@ const Upload = styled.div`
     border: 0;
     cursor: pointer;
     background-color: transparent;
-    color: #0000ff;
+    color: white;
+    background-color: #0000ff;
     font-weight: bold;
     font-family: D-DIN;
     letter-spacing: 1.5px;
     border: 1px solid #0000ff;
-    background-color: #ffffff;
     margin-top: 16px;
     border-radius: 5px;
     font-size: 16px;
@@ -55,9 +59,9 @@ const Upload = styled.div`
     }
     &:disabled {
       opacity: 0.5;
-      border: 1px solid #0000ff;
+      border: 1px solid #aaa;
       background-color: #ffffff;
-      color: #0000ff;
+      color: #aaa;
       cursor: default;
     }
   }
@@ -71,12 +75,17 @@ const New = ({ servers }) => {
   const [isLoading, setLoading] = useState()
 
   const readFile = async (file) => {
-    if (!file) return
+    if (!file || file.type !== 'text/plain') {
+      setLogs()
+      return
+    }
 
     const txt = await file.text()
     const parsedLogs = parseLogs(txt)
     parsedLogs.server = server || 'playpark-rhisis'
-    parsedLogs.date = file.lastModified
+    parsedLogs.date = new Date(
+      new Date(file.lastModified).toDateString(),
+    ).getTime()
 
     setLogs(parsedLogs)
   }
@@ -95,7 +104,12 @@ const New = ({ servers }) => {
         body: JSON.stringify(logs),
       })
 
-      router.push(`/logs/${logs.server}/${logs.date}`)
+      // trigger deployment
+      await fetch(
+        'https://api.vercel.com/v1/integrations/deploy/prj_4IYAFofplqWPpwWdMwFPRQtzFTdt/QlHPnSMUmn',
+      )
+
+      router.push(`/`)
     } catch (_) {
       reset()
     }
@@ -125,13 +139,20 @@ const New = ({ servers }) => {
           <button className="save" disabled={!logs} onClick={save}>
             UPLOAD NOW
           </button>
+          <p>
+            <strong>NOTICE!</strong>
+            <br /> Due to an increasing amount of random shit being uploaded by
+            trolls on the page, all new entries will now go through an approval
+            process.
+          </p>
+          <p>The process is automated, so it should be pretty quick.</p>
         </div>
       </Upload>
     </Spinner>
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const res = await sfetch('/servers')
   const servers = await res.json()
   return {
