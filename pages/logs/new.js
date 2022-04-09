@@ -140,11 +140,15 @@ const New = ({ servers }) => {
           </button>
           <p>
             <strong>NOTICE!</strong>
-            <br /> Due to an increasing amount of random shit being uploaded by
-            trolls on the page, all new entries will now go through an approval
+            <br />
+            Due to an increasing amount of trolls uploading random and malicious
+            shit on the page, all new entries will now go through an approval
             process.
           </p>
-          <p>The process is automated, so it should be pretty quick.</p>
+          <p>
+            The process is automated, so legit entries should be available on
+            the page in a couple of minutes.
+          </p>
         </div>
       </Upload>
     </Spinner>
