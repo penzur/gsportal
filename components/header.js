@@ -16,20 +16,18 @@ export default function Header() {
                   top: -5,
                   left: 2,
                 }}
-              >
-                / BETA
-              </small>
+              ></small>
             </span>
           </a>
         </Link>
       </div>
       <div>
         <Link href="/logs/new">
-          <a className="right">↥ UPLOAD LOGS</a>
+          <a className="right">&uarr; UPLOAD</a>
         </Link>
         <span className="mute right">|</span>
         <Link href="/calculator">
-          <a className="right">λ CALCULATOR</a>
+          <a className="right">λ CALC</a>
         </Link>
       </div>
     </header>

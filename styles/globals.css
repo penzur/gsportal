@@ -7,7 +7,7 @@ body {
   height: 100%;
   font-family: 'D-DIN', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background: transparent url(/kid.png) bottom 70px left 16px no-repeat;
+  background: transparent url(/kid.png) bottom 0px left 16px no-repeat;
   background-size: 200px;
   background-color: #d3d9ed;
   letter-spacing: 0.5px;
@@ -82,7 +82,7 @@ a.logo {
 }
 #container > header > div a:not(.logo) {
   cursor: pointer;
-  padding: 20px;
+  padding: 20px 10px;
   border-radius: 5px;
   outline: none;
   outline: none;
@@ -91,21 +91,15 @@ a.logo {
 }
 
 #container > footer {
-  background-color: #d3d9ed;
   margin-bottom: 0;
   text-transform: uppercase;
   font-size: 18px;
   letter-spacing: 0.5px;
   font-family: Inconsolata;
 }
-#container > footer::before {
-  content: ' ';
-  display: block;
-  height: 1px;
-  width: 64px;
-  background-color: #0000ff;
-  position: absolute;
-  top: 0;
+#container > footer > p {
+  text-align: center;
+  margin: 0 auto;
 }
 
 .condensed {

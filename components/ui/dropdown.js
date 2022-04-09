@@ -111,7 +111,7 @@ export default ({
           {selected ? data.find((d) => selected === d.value)?.label : label}
         </div>
         <div className="right">
-          <span>↕</span>
+          <span>&darr;</span>
         </div>
       </div>
       {open && data.length > 0 && (

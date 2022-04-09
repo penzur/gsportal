@@ -16,11 +16,9 @@ const Upload = styled.div`
   width: 100%;
   overflow: auto;
   text-align: center;
-  padding: 20px;
 
   .wrap {
     margin: 0 auto;
-    min-width: 320px;
     max-width: 400px;
 
     p {
