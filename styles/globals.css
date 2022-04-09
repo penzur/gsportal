@@ -69,25 +69,24 @@ a.logo {
   background-color: #fff;
   border-bottom: 1px solid #0000ff;
   color: #000;
-}
-#container > header > div {
-  flex: 1;
-  display: block;
-}
-#container > header > div:last-child {
   display: flex;
-  flex: 2;
   align-items: center;
-  justify-content: right;
+  flex-direction: row;
+  justify-content: space-between;
 }
 #container > header > div a:not(.logo) {
   cursor: pointer;
-  padding: 20px 10px;
-  border-radius: 5px;
-  outline: none;
+  padding: 0 16px;
   outline: none;
   font-size: 14px;
   letter-spacing: 1px;
+}
+
+#container > header > div:last-child a:not(:last-child) {
+  border-right: 1px solid #0000ff44;
+}
+#container > header > div:last-child a:last-child {
+  padding-right: 0;
 }
 
 #container > footer {

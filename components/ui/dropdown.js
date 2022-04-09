@@ -19,18 +19,8 @@ const Wrap = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    & > div {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      &.right {
-        justify-content: right;
-      }
-      .down {
-        transform: rotate(90deg);
-      }
-    }
   }
 
   &:hover {
@@ -110,7 +100,7 @@ export default ({
         <div>
           {selected ? data.find((d) => selected === d.value)?.label : label}
         </div>
-        <div className="right">
+        <div>
           <span>&darr;</span>
         </div>
       </div>

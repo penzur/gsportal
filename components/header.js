@@ -23,11 +23,10 @@ export default function Header() {
       </div>
       <div>
         <Link href="/logs/new">
-          <a className="right">&uarr; UPLOAD</a>
+          <a>&uarr; UPLOAD</a>
         </Link>
-        <span className="mute right">|</span>
         <Link href="/calculator">
-          <a className="right">λ CALC</a>
+          <a>λ CALC</a>
         </Link>
       </div>
     </header>
