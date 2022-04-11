@@ -27,7 +27,7 @@ const LogView = ({ logs }) => {
 
   return (
     <Wrap>
-      <ul className="guild">
+      <ul className="log guild">
         <li className="head" key="g-head">
           <span className="txt">Rank / Guild ({logs.guilds.length})</span>
           <span className="numbers">Players</span>
@@ -61,7 +61,7 @@ const LogView = ({ logs }) => {
           </li>
         ))}
       </ul>
-      <ul>
+      <ul className="players log">
         <li className="head" key="p-head">
           <span className="txt">
             Rank / Player (

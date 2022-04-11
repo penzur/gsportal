@@ -72,7 +72,7 @@ export default ({ logs = [], servers = {} }) => {
             label="All Servers"
             onChange={setSelected}
           />
-          <ul key="main" style={{ marginTop: 0 }}>
+          <ul className="log guild" key="main" style={{ marginTop: 0 }}>
             <li className="head">
               <span className="txt">Date</span>
               <span className="txtw">Server</span>

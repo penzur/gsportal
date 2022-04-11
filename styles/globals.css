@@ -187,5 +187,9 @@ a.logo {
   margin: 0 0.2em;
 }
 
-@media (hover: hover) {
+@media (max-width: 720px) {
+  ul.log > li:not(.head):not(.selected):not(.details) {
+    background-color: #ffffff !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
 }
