@@ -192,4 +192,8 @@ a.logo {
     background-color: #ffffff !important;
     color: rgba(0, 0, 0, 0.7) !important;
   }
+  ul.log > li:active:not(.head):not(.selected):not(.details) {
+    background-color: rgb(104 104 149) !important;
+    color: #ffffff !important;
+  }
 }
