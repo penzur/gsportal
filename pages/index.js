@@ -85,9 +85,9 @@ export default ({ logs = [], servers = {} }) => {
                 if (selected === 'all') return true
                 return l.server === selected
               })
-              .map((l) => (
+              .map((l, i) => (
                 <li
-                  key={l.date}
+                  key={`${i}-${l.date}`}
                   onClick={() => {
                     window.location.href = `/logs/${l.server}/${l.date}`
                   }}
