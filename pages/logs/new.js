@@ -21,6 +21,10 @@ const Upload = styled.div`
     margin: 0 auto;
     max-width: 400px;
 
+    h2 {
+      margin-top: 3rem;
+    }
+
     p {
       line-height: 1.3;
     }
@@ -147,7 +151,7 @@ const New = ({ servers }) => {
           </p>
           <p>
             The process is automated, so legit entries should be available on
-            the page in a couple of minutes.
+            the page within a matter of minutes.
           </p>
         </div>
       </Upload>

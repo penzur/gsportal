@@ -16,7 +16,9 @@ export default function Header() {
                   top: -5,
                   left: 2,
                 }}
-              ></small>
+              >
+                LOGS PARSER
+              </small>
             </span>
           </a>
         </Link>

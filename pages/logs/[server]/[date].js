@@ -12,21 +12,19 @@ export default ({ log, servers }) => {
   const date = new Date(log.date).toLocaleDateString()
   return (
     <Content>
-      <Head>
-        <title>
-          GS - {server} {date}
-        </title>
-      </Head>
-      <Nav>
-        <div></div>
-        <div className="center">
+      <div className="wrap">
+        <Head>
+          <title>
+            GS - {server} {date}
+          </title>
+        </Head>
+        <Nav>
           <h2>
             {server} <span className="mute">|</span> {date}
           </h2>
-        </div>
-        <div></div>
-      </Nav>
-      <LogView logs={log} />
+        </Nav>
+        <LogView logs={log} />
+      </div>
     </Content>
   )
 }

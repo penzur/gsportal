@@ -9,6 +9,10 @@ const Calc = styled.div`
   min-width: 320px;
   max-width: 400px;
 
+  h2 {
+    margin-top: 2rem;
+  }
+
   .switch,
   main {
     width: 100%;

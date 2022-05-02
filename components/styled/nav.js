@@ -6,6 +6,7 @@ const Nav = styled.div`
   align-items: center;
   & > * {
     flex: 1;
+    text-align: center;
   }
 
   button {

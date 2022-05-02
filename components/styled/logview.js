@@ -130,8 +130,11 @@ const LogView = styled.div`
     }
   }
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1100px) {
     display: block;
+    & > ul:first-child {
+      margin-right: 0;
+    }
   }
   @media only screen and (max-width: 720px) {
     & > ul {

@@ -56,7 +56,7 @@ export default ({ logs = [], servers = {} }) => {
 
       <List>
         <LogView>
-          <h2 className="center">Siege Logs</h2>
+          <br />
           <DropDown
             data={[
               {
