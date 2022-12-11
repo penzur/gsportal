@@ -12,7 +12,6 @@ export default function Header() {
                 style={{
                   fontSize: 16,
                   position: 'relative',
-                  fontFamily: 'Inconsolata',
                   top: -5,
                   left: 2,
                 }}

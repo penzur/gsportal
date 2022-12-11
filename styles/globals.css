@@ -1,11 +1,11 @@
-@import url('//fonts.cdnfonts.com/css/d-din');
-@import url('//fonts.cdnfonts.com/css/inconsolata-2');
+@import url('http://fonts.cdnfonts.com/css/d-din');
+@import url('http://fonts.cdnfonts.com/css/inconsolata-2');
 html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
-  font-family: 'D-DIN', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family: 'd-din', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: transparent url(/kid.png) bottom 0px left 16px no-repeat;
   background-size: 200px;
@@ -94,7 +94,7 @@ a.logo {
   text-transform: uppercase;
   font-size: 18px;
   letter-spacing: 0.5px;
-  font-family: Inconsolata;
+  font-family: Inconsolata, Consolas, 'Courier New', monospace;
 }
 #container > footer > p {
   text-align: center;
