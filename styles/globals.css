@@ -1,13 +1,13 @@
-@import url('https://fonts.cdnfonts.com/css/d-din');
-@import url('https://fonts.cdnfonts.com/css/inconsolata-2');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Ropa+Sans&display=swap');
 html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
-  font-family: 'd-din', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family: 'Ropa Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: transparent url(/kid.png) bottom 0px left 16px no-repeat;
+  font-size: 18px;
   background-size: 200px;
   background-color: #d3d9ed;
   letter-spacing: 0.5px;
@@ -92,9 +92,9 @@ a.logo {
 #container > footer {
   margin-bottom: 0;
   text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  font-family: Inconsolata, Consolas, 'Courier New', monospace;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
 }
 #container > footer > p {
   text-align: center;
@@ -102,7 +102,7 @@ a.logo {
 }
 
 .condensed {
-  font-family: 'D-DIN Condensed';
+  font-family: 'Ropa Sans';
   letter-spacing: 1px;
   opacity: 0.75;
 }
@@ -111,7 +111,7 @@ a.logo {
   padding: 0.75rem;
   font-size: 16px;
   opacity: 0.95;
-  font-family: 'Inconsolata', Menlo, Monaco, Lucida Console, Liberation Mono,
+  font-family: 'JetBrains Mono', Menlo, Monaco, Lucida Console, Liberation Mono,
     DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 

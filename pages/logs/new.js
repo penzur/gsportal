@@ -47,7 +47,7 @@ const Upload = styled.div`
     color: white;
     background-color: #0000ff;
     font-weight: bold;
-    font-family: D-DIN;
+    font-family: 'JetBrans Mono';
     letter-spacing: 1.5px;
     border: 1px solid #0000ff;
     margin-top: 16px;

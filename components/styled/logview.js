@@ -34,7 +34,7 @@ const LogView = styled.div`
           position: relative;
           margin-right: 28px;
           left: 8px;
-          font-family: 'D-DIN Condensed';
+          font-family: 'Ropa Sans';
           font-weight: normal;
           opacity: 0.5;
         }
