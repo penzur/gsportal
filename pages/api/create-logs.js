@@ -13,6 +13,22 @@ export default async (req, res) => {
 
   const logs = JSON.parse(req.body)
 
+  // check if log already exists in the database, then return
+  try {
+    await faunaClient.query(
+      q.Get(
+        q.Match('logs_by_server_and_date', logs.server, parseInt(logs.date)),
+      ),
+    )
+    res.status(400).json(
+      JSON.stringify({
+        error: 'log exists, try again!',
+      }),
+    )
+    return
+  } catch (e) {}
+
+  // otherwise, process new log
   try {
     await faunaClient.query(
       q.Create(q.Collection('logs'), {

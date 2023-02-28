@@ -6,9 +6,17 @@ export default async (req, res) => {
   const { date = 0, server = '' } = req.query
 
   if (req.method == 'GET') {
-    let query = await faunaClient.query(
-      q.Get(q.Match('logs_by_server_and_date', server, parseInt(date))),
-    )
-    res.status(200).json(JSON.stringify(query.data))
+    try {
+      let query = await faunaClient.query(
+        q.Get(q.Match('logs_by_server_and_date', server, parseInt(date))),
+      )
+      res.status(200).json(JSON.stringify(query.data))
+    } catch (e) {
+      res.status(400).json(
+        JSON.stringify({
+          error: e.message,
+        }),
+      )
+    }
   }
 }
