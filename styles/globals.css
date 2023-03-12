@@ -54,11 +54,11 @@ a.logo {
   position: relative;
   height: calc(100vh - 144px);
   flex: 1;
+  margin-top: 72px;
 }
 
 #container > header,
 #container > footer {
-  position: relative;
   height: 72px;
   padding: 20px;
   display: flex;
@@ -66,6 +66,9 @@ a.logo {
 }
 
 #container > header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
   background-color: #fff;
   border-bottom: 1px solid #0000ff;
   color: #000;
@@ -73,6 +76,15 @@ a.logo {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  text-align: center;
+}
+#container > header > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1440px;
+  margin: 0 auto;
 }
 #container > header > div a:not(.logo) {
   cursor: pointer;
@@ -173,6 +185,10 @@ a.logo {
   footer p {
     font-size: 12px;
   }
+}
+
+span {
+  overflow-wrap: break-word;
 }
 
 .right {

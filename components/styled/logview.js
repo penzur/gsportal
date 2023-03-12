@@ -107,15 +107,27 @@ const LogView = styled.div`
           small {
             font-size: 13px;
             opacity: 0.5;
-            letter-spacing: 1.5px;
           }
 
           &:last-child {
             padding-left: 64px;
           }
         }
+        .code {
+          padding: 16px 0;
+        }
         .code > li {
           margin-bottom: 8px;
+          display: flex;
+          flex-direction: row;
+          & > * {
+            flex: 1;
+            width: 50%;
+            overflow-wrap: break-word;
+          }
+          & > :last-child {
+            text-align: right;
+          }
         }
       }
     }

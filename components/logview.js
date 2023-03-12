@@ -139,7 +139,7 @@ const LogView = ({ logs }) => {
                               <li
                                 key={`kills-${k.name.trim() || '-'}-${i}${x}`}
                               >
-                                {k.name.trim() || '-'}
+                                <span>{k.name.trim() || '-'}</span>
                                 <small className="right">{k.guild}</small>
                               </li>
                             ))}
@@ -158,7 +158,7 @@ const LogView = ({ logs }) => {
                         <small>LIFE {i + 1}</small>
                         <ul className="code">
                           <li>
-                            {d.name.trim() || '-'}
+                            <span>{d.name.trim() || '-'}</span>
                             <small className="right">{d.guild}</small>
                           </li>
                         </ul>
