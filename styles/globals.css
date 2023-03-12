@@ -68,6 +68,7 @@ a.logo {
 }
 #container > footer {
   bottom: 0;
+  width: 100vw;
 }
 #container > header {
   top: 0;
