@@ -54,20 +54,22 @@ a.logo {
   position: relative;
   height: calc(100vh - 144px);
   flex: 1;
-  margin-top: 72px;
+  margin: 72px 0;
 }
 
 #container > header,
 #container > footer {
+  position: fixed;
   height: 72px;
   padding: 20px;
   display: flex;
   align-items: center;
   z-index: 99999;
 }
-
+#container > footer {
+  bottom: 0;
+}
 #container > header {
-  position: fixed;
   top: 0;
   width: 100vw;
   background-color: #fff;
