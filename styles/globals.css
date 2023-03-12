@@ -63,6 +63,7 @@ a.logo {
   padding: 20px;
   display: flex;
   align-items: center;
+  z-index: 99999;
 }
 
 #container > header {
