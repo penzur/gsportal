@@ -116,11 +116,16 @@ export default ({ logs = [], servers = {} }) => {
 }
 
 export async function getStaticProps() {
-  let res = await fetch('/logs')
-  const logs = await res.json()
-  res = await fetch('/servers')
-  const servers = await res.json()
-  return {
-    props: { logs, servers },
+  try {
+    let res = await fetch('/logs')
+    const logs = await res.json()
+    res = await fetch('/servers')
+    const servers = await res.json()
+    return {
+      props: { logs, servers },
+    }
+  } catch (e) {
+    console.log('error', e.message)
+    return {}
   }
 }
