@@ -79,6 +79,7 @@ const LogView = styled.div`
         display: flex;
         align-items: baseline;
         & > div {
+          flex: 1;
           max-width: 45%;
           &:not(:last-child) {
             &::before {
