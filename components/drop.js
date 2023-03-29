@@ -109,7 +109,7 @@ const Target = styled.div`
   background-color: #0000ff11;
   color: #0000ffaa;
   display: flex;
-  font-family: Inconsolata;
+  font-family: 'JetBrains Mono';
   font-weight: normal;
   justify-content: center;
   align-items: center;

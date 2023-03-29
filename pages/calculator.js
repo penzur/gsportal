@@ -113,7 +113,7 @@ const Calc = styled.div`
         }
         & > input {
           padding: 44px 16px 16px;
-          font-family: Inconsolata;
+          font-family: 'JetBrains Mono';
           width: 100%;
           height: 100%;
           display: inline-block;
