@@ -80,8 +80,8 @@ const LogView = styled.div`
         align-items: baseline;
         & > div {
           flex: 1;
-          max-width: 45%;
           &:not(:last-child) {
+            max-width: 45%;
             &::before {
               content: ' ';
               box-sizing: border-box;
