@@ -57,7 +57,7 @@ const Wrap = styled.div`
     box-sizing: border-box;
     height: 200px;
     text-align: center;
-    font-family: Inconsolata;
+    font-family: 'JetBrains Mono';
     button {
       cursor: pointer;
       position: absolute;

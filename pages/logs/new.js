@@ -47,7 +47,7 @@ const Upload = styled.div`
     color: white;
     background-color: #0000ff;
     font-weight: bold;
-    font-family: 'JetBrans Mono';
+    font-family: 'Ropa Sans';
     letter-spacing: 1.5px;
     border: 1px solid #0000ff;
     margin-top: 16px;
@@ -142,17 +142,7 @@ const New = ({ servers }) => {
           <button className="save" disabled={!logs} onClick={save}>
             UPLOAD NOW
           </button>
-          <p>
-            <strong>NOTICE!</strong>
-            <br />
-            Due to an increasing amount of trolls uploading random and malicious
-            shit on the page, all new entries will now go through an approval
-            process.
-          </p>
-          <p>
-            The process is automated, so legit entries should be available on
-            the page within a matter of minutes.
-          </p>
+          <p>&nbsp;</p>
         </div>
       </Upload>
     </Spinner>
