@@ -9,14 +9,14 @@ const hashMe = async (data) => {
   return hashHex
 }
 
-export const parseLogs = async (logs, isPrivate) => {
+export const parseLogs = async (logs) => {
   const hash = await hashMe(logs)
   const playerObject = logs
     .replace(/\r/g, '')
     .split('\n\n')
     .map((str) => str.split('\n'))
     .reduce((val, n) => {
-      const [line1, line2] = n
+      const [line1] = n
       // parse guild and player details from the first line
       const [attacker, target] = line1
         .replace(/(guild master|defender) /gi, '')
@@ -31,19 +31,10 @@ export const parseLogs = async (logs, isPrivate) => {
             .trim()
           return [guild.trim(), player.trim()]
         })
-
-      // parse points from line 2
-      if (!line2) return val
       // if private server, then points is always 2
-      const points = isPrivate
-        ? 2
-        : line2
-            .replace(/[<>]/g, '')
-            .split(',')
-            .map((p) => {
-              return parseInt(p.trim().replace(/[^\d]/gi, ''))
-            })
-            .reduce((val, p) => val + p, 0)
+      const points = parseInt(
+        (line1.match(/\d grade/) || [])[0]?.split(' ')[0] || '2',
+      )
 
       // attacker and target data should not be empty or null
       if (!attacker || !target) return val
