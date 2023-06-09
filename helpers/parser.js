@@ -105,6 +105,7 @@ export const parseLogs = async (logs, isPrivate) => {
         name: p.guild,
         points: 0,
         kills: 0,
+        resu: 0,
         players: [],
       }
     }
@@ -121,7 +122,9 @@ export const parseLogs = async (logs, isPrivate) => {
       resu,
     })
     v[p.guild].players.sort((a, b) => b.points - a.points)
-
+    // side effects
+    const pidx = players.indexOf(players.find((pl) => pl.name === p.name))
+    players[pidx].resu = resu
     return v
   }, {})
 

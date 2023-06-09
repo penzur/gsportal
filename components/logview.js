@@ -59,7 +59,7 @@ const LogView = ({ logs }) => {
             <span className="numbers">{g.players.length}</span>
             <span className="numbers">{g.kills}</span>
             <span className="numbers">{g.points}</span>
-            <span className="numbers">{g.resu ? g.resu : 'N/A'}</span>
+            <span className="numbers">{g.resu >= 0 ? g.resu : 'N/A'}</span>
           </li>
         ))}
       </ul>
@@ -120,7 +120,7 @@ const LogView = ({ logs }) => {
                 {l.kills.reduce((v, n) => [...v, ...n], []).length}
               </span>
               <span className="numbers">{l.points}</span>
-              <span className="numbers">{l.resu ? l.resu : 'N/A'}</span>
+              <span className="numbers">{l.resu >= 0 ? l.resu : 'N/A'}</span>
             </li>
             {selected === i ? (
               <li className="details" key={`k-details-${i}`}>
