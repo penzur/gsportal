@@ -33,6 +33,7 @@ const LogView = ({ logs }) => {
           <span className="numbers">Players</span>
           <span className="numbers">Kills</span>
           <span className="numbers">Points</span>
+          <span className="numbers">Resu</span>
         </li>
         {logs.guilds.map((g, i) => (
           <li
@@ -58,6 +59,7 @@ const LogView = ({ logs }) => {
             <span className="numbers">{g.players.length}</span>
             <span className="numbers">{g.kills}</span>
             <span className="numbers">{g.points}</span>
+            <span className="numbers">{g.resu ? g.resu : 'N/A'}</span>
           </li>
         ))}
       </ul>
@@ -76,6 +78,7 @@ const LogView = ({ logs }) => {
           <span className="numbers">Guild</span>
           <span className="numbers">Kills</span>
           <span className="numbers">Points</span>
+          <span className="numbers">Resu</span>
         </li>
         {(() => {
           if (selectedGuild)
@@ -117,6 +120,7 @@ const LogView = ({ logs }) => {
                 {l.kills.reduce((v, n) => [...v, ...n], []).length}
               </span>
               <span className="numbers">{l.points}</span>
+              <span className="numbers">{l.resu ? l.resu : 'N/A'}</span>
             </li>
             {selected === i ? (
               <li className="details" key={`k-details-${i}`}>

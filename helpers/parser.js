@@ -9,7 +9,7 @@ const hashMe = async (data) => {
   return hashHex
 }
 
-export const parseLogs = async (logs) => {
+export const parseLogs = async (logs, isPrivate) => {
   const hash = await hashMe(logs)
   const playerObject = logs
     .replace(/\r/g, '')
@@ -34,13 +34,16 @@ export const parseLogs = async (logs) => {
 
       // parse points from line 2
       if (!line2) return val
-      const points = line2
-        .replace(/[<>]/g, '')
-        .split(',')
-        .map((p) => {
-          return parseInt(p.trim().replace(/[^\d]/gi, ''))
-        })
-        .reduce((val, p) => val + p, 0)
+      // if private server, then points is always 2
+      const points = isPrivate
+        ? 2
+        : line2
+            .replace(/[<>]/g, '')
+            .split(',')
+            .map((p) => {
+              return parseInt(p.trim().replace(/[^\d]/gi, ''))
+            })
+            .reduce((val, p) => val + p, 0)
 
       // attacker and target data should not be empty or null
       if (!attacker || !target) return val
@@ -92,6 +95,10 @@ export const parseLogs = async (logs) => {
     })
     .sort((a, b) => b.points - a.points)
 
+  const maxLives = Math.max(
+    players.reduce((v, p) => Math.max(v, p.deaths.length), 0),
+  )
+
   const guildObj = players.reduce((v, p) => {
     if (!v[p.guild]) {
       v[p.guild] = {
@@ -106,14 +113,18 @@ export const parseLogs = async (logs) => {
     v[p.guild].kills += p.kills.reduce((v, k) => {
       return [...v, ...k]
     }).length
+    const resu = maxLives - p.deaths.length
+    v[p.guild].resu += resu
     v[p.guild].players.push({
       name: p.name,
       points: p.points,
+      resu,
     })
     v[p.guild].players.sort((a, b) => b.points - a.points)
 
     return v
   }, {})
+
   const guilds = Object.keys(guildObj)
     .map((k) => {
       return guildObj[k]
