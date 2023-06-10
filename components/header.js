@@ -17,7 +17,7 @@ export default function Header() {
                     left: 2,
                   }}
                 >
-                  BETA
+                  PARSER
                 </small>
               </span>
             </a>
@@ -26,9 +26,6 @@ export default function Header() {
         <div>
           <Link href="/logs/new">
             <a>&uarr; UPLOAD</a>
-          </Link>
-          <Link href="/calculator">
-            <a>λ CALC</a>
           </Link>
         </div>
       </div>
