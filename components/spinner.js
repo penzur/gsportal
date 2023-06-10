@@ -57,7 +57,7 @@ const spin = ({ spin, children }) => (
           <div></div>
           <div></div>
         </div>
-        <small>PLEASE WAIT...</small>
+        <small>THIS COULD TAKE SOME TIME. PLEASE WAIT...</small>
       </Spin>
     )}
   </>

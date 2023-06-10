@@ -111,6 +111,7 @@ const New = ({ servers }) => {
         'https://api.vercel.com/v1/integrations/deploy/prj_4IYAFofplqWPpwWdMwFPRQtzFTdt/QlHPnSMUmn',
       )
 
+      await new Promise((resolve) => setTimeout(resolve, 40000))
       router.push(`/`)
     } catch (_) {
       reset()
