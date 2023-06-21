@@ -1,11 +1,10 @@
 import { query as q } from 'faunadb'
 import { faunaClient } from '../../helpers/fauna'
 
-// eslint-disable-next-line
-export default async (req, res) => {
+const Log = async (req, res) => {
   const { date = 0, server = '' } = req.query
 
-  if (req.method == 'GET') {
+  if (req.method === 'GET') {
     try {
       let query = await faunaClient.query(
         q.Get(q.Match('logs_by_server_and_date', server, parseInt(date))),
@@ -24,3 +23,5 @@ export default async (req, res) => {
     }
   }
 }
+
+export default Log

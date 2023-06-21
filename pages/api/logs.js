@@ -1,9 +1,8 @@
 import { query as q } from 'faunadb'
 import { faunaClient } from '../../helpers/fauna'
 
-// eslint-disable-next-line
-export default async (req, res) => {
-  if (req.method == 'GET') {
+const Logs = async (req, res) => {
+  if (req.method === 'GET') {
     try {
       let query = await faunaClient.query(
         q.Map(
@@ -29,3 +28,5 @@ export default async (req, res) => {
     }
   }
 }
+
+export default Logs
