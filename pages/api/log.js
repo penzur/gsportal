@@ -10,7 +10,11 @@ export default async (req, res) => {
       let query = await faunaClient.query(
         q.Get(q.Match('logs_by_server_and_date', server, parseInt(date))),
       )
-      res.status(200).json(JSON.stringify(query.data))
+      const data = query.data
+      data.guilds = data.guilds.sort((a, b) =>
+        a.points + a.resu > b.points + b.resu ? -1 : 1,
+      )
+      res.status(200).json(JSON.stringify(data))
     } catch (e) {
       res.status(400).json(
         JSON.stringify({

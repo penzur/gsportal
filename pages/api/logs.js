@@ -16,7 +16,10 @@ export default async (req, res) => {
           query.data.map(({ data: { server, date, guilds, players } }) => ({
             server,
             date,
-            winner: guilds[0]?.name,
+            winner: guilds.sort((a, b) => {
+              if (a.points + a.resu > b.points + b.resu) return -1
+              return 1
+            })[0]?.name,
             mvp: players[0]?.name,
           })),
         ),
