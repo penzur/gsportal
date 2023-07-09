@@ -13,6 +13,7 @@ export const parseLogs = async (logs) => {
   const hash = await hashMe(logs)
   const playerObject = logs
     .replace(/\r/g, '')
+    .replace(/\[\d\d:\d\d:\d\d\] /g, '')
     .split('\n\n')
     .map((str) => str.split('\n'))
     .reduce((val, n) => {
