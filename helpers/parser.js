@@ -9,70 +9,79 @@ const hashMe = async (data) => {
   return hashHex
 }
 
-export const parseLogs = async (logs) => {
+export const parseLogs = async (logs, custom) => {
   const hash = await hashMe(logs)
-  const playerObject = logs
-    .replace(/\r/g, '')
-    .replace(/\[\d\d:\d\d:\d\d\] /g, '')
-    .split('\n\n')
-    .map((str) => str.split('\n'))
-    .reduce((val, n) => {
-      const [line1] = n
-      // parse guild and player details from the first line
-      const [attacker, target] = line1
-        .replace(/(guild master|defender) /gi, '')
-        .split(/\sattack\s/i)
-        .map((str) => {
-          if (!str) return
-          const guild = str.match(/\[.+\]/gi)[0].replace(/[\[\]]/g, '')
-          const player = str
-            .replace(/\d? grade.+$/g, '')
-            .match(/\] .+(\(|$)/gi)[0]
-            .replace(/[\]\(]/g, '')
-            .trim()
-          return [guild.trim(), player.trim()]
-        })
-      // if private server, then points is always 2
-      const points = parseInt(
-        (line1.match(/\d grade/) || [])[0]?.split(' ')[0] || '2',
-      )
+  const entries = custom
+    ? logs
+        .replace(/\r/g, '')
+        .replace(/\[\d\d:\d\d:\d\d\] /g, '')
+        .split('\n')
+        .map((str) => [str, ''])
+    : logs
+        .replace(/\r/g, '')
+        .replace(/\[\d\d:\d\d:\d\d\] /g, '')
+        .split('\n\n')
+        .map((str) => str.split('\n'))
 
-      // attacker and target data should not be empty or null
-      if (!attacker || !target) return val
+  const playerObject = entries.reduce((val, n) => {
+    const [line1] = n
+    // parse guild and player details from the first line
+    const [attacker, target] = (
+      custom
+        ? line1.replace(/(guild master|defender) /gi, '').split(/\skilled\s/i)
+        : line1.replace(/(guild master|defender) /gi, '').split(/\sattack\s/i)
+    ).map((str) => {
+      if (!str) return
+      const guild = str.match(/\[.+\]/gi)[0].replace(/[\[\]]/g, '')
+      const player = str
+        .replace(/\d? grade.+$/g, '')
+        .replace(/ for \d points/gi, '')
+        .match(/\] .+(\(|$)/gi)[0]
+        .replace(/[\]\(]/g, '')
+        .trim()
+      return [guild.trim(), player.trim()]
+    })
+    // if private server, then points is always 2
+    const points = custom
+      ? parseInt((line1.match(/for \d points/) || [])[0]?.split(' ')[1] || '2')
+      : parseInt((line1.match(/\d grade/) || [])[0]?.split(' ')[0] || '2')
 
-      const [guild, name] = attacker
-      const [tarGuild, targetIgn] = target
+    // attacker and target data should not be empty or null
+    if (!attacker || !target) return val
 
-      // init defaults
-      if (!val[name]) {
-        val[name] = { kills: [[]], deaths: [], guild, points: 0 }
-      }
-      if (!val[targetIgn]) {
-        val[targetIgn] = {
-          kills: [[]],
-          deaths: [],
-          guild: tarGuild,
-          points: 0,
-        }
-      }
+    const [guild, name] = attacker
+    const [tarGuild, targetIgn] = target
 
-      // ATTACKER
-      // current life
-      const life = val[name].deaths.length
-      val[name].kills[life].push({
+    // init defaults
+    if (!val[name]) {
+      val[name] = { kills: [[]], deaths: [], guild, points: 0 }
+    }
+    if (!val[targetIgn]) {
+      val[targetIgn] = {
+        kills: [[]],
+        deaths: [],
         guild: tarGuild,
-        name: targetIgn,
-        points,
-      })
-      val[name].points += points
+        points: 0,
+      }
+    }
 
-      // TARGET
-      val[targetIgn].deaths.push({ guild: guild, name: name })
-      // move to next life
-      val[targetIgn].kills.push([])
+    // ATTACKER
+    // current life
+    const life = val[name].deaths.length
+    val[name].kills[life].push({
+      guild: tarGuild,
+      name: targetIgn,
+      points,
+    })
+    val[name].points += points
 
-      return val
-    }, {})
+    // TARGET
+    val[targetIgn].deaths.push({ guild: guild, name: name })
+    // move to next life
+    val[targetIgn].kills.push([])
+
+    return val
+  }, {})
 
   const players = Object.keys(playerObject)
     .map((k) => {

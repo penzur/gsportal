@@ -83,7 +83,7 @@ const New = ({ servers }) => {
     }
 
     const txt = await file.text()
-    const parsedLogs = await parseLogs(txt)
+    const parsedLogs = await parseLogs(txt, server.match(/aegis/i))
     parsedLogs.server = server || 'playpark-rhisis'
     parsedLogs.date = new Date(
       new Date(file.lastModified).toDateString(),
